@@ -1,10 +1,17 @@
 //      Desafio: Calcular o IMC
-//      Método 1: com os valores já informados.
-public class DesafioIMC {
-    public static void main(String[] args) {
+//      Método 2: calculando com valores scaneados.
+import java.util.Scanner;
 
-        float altura = 1.67f;
-        float peso = 69f;
+public class DesafioIMCScan {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Informe seu peso: ");
+        float peso = scanner.nextFloat();
+
+        System.out.print("Informe sua altura: ");
+        float altura = scanner.nextFloat();
+
         float imc = peso/(altura*altura);
 
         System.out.println(String.format("O IMC calculado foi %.2f.", imc));
@@ -22,4 +29,3 @@ public class DesafioIMC {
         }
     }
 }
-
