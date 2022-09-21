@@ -1,6 +1,5 @@
 //      Desafio: Calcular o IMC
 //      Método 1: com os valores já informados.
-
 public class DesafioIMC {
     public static void main(String[] args) {
 

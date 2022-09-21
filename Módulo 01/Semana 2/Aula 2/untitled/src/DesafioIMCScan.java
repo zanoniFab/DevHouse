@@ -1,7 +1,5 @@
 //      Desafio: Calcular o IMC
 //      Método 2: calculando com valores scaneados.
-
-
 import java.util.Scanner;
 
 public class DesafioIMCScan {
