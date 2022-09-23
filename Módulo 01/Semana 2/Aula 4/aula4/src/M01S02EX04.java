@@ -11,11 +11,11 @@ public class M01S02EX04 {
         };
 
         for (int i = 0; i < sorteados.length; i++) {
-            for (int j = 0; j < sorteados[j].length; j++) {
-                if (nroSorte == sorteados[j].);
+            for (int j = 0; j < sorteados[i].length; j++) {
+                if (nroSorte == sorteados[i][j]){
+                    contador++;
                 }
             }
-
         }
         System.out.println(contador);
     }
