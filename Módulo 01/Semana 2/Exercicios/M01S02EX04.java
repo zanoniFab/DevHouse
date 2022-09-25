@@ -17,6 +17,6 @@ public class M01S02EX04 {
                 }
             }
         }
-        System.out.println(contador);
+        System.out.printf("Repetições: %d.",contador);
     }
 }
