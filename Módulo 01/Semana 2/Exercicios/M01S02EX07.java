@@ -10,7 +10,9 @@ class M01S02EX07{
         }
         System.out.println();
         System.out.print("Imprimindo com o for-each: ");
-        nomes.forEach(System.out::println);
+        for (String nome:nomes){
+            System.out.printf("%s; ",nome);
+        }
 
 
         System.out.println();
