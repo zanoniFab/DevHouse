@@ -4,11 +4,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Concurso {
+public class Concurso implements Comparable<Concurso> {
     private Integer numero;
     private LocalDate data;
     private int[] sorteados;
 
+    @Override
+    public int compareTo(Concurso o){
+        return this.numero.compareTo(o.numero);
+    }
     public String SorteadosEmOrdemCrescente(){
         Arrays.sort(sorteados);
         return Arrays.toString(sorteados);
