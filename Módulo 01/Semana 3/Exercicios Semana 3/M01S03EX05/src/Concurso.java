@@ -9,6 +9,10 @@ public class Concurso {
     private LocalDate data;
     private int[] sorteados;
 
+    public String SorteadosEmOrdemCrescente(){
+        Arrays.sort(sorteados);
+        return Arrays.toString(sorteados);
+    }
     public Concurso (){};
 
     public Concurso(Integer numero, LocalDate data, int[] sorteados) {

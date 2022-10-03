@@ -24,8 +24,6 @@ public class Principal {
             String dataStr = partes[1];
             LocalDate data = LocalDate.parse(dataStr, formatador);
             int[] sorteados = new int [6];
-            System.out.println(sorteados.length);
-            System.out.println(partes.length);
 
             for (int i=2; i <= 7; i++){
                 sorteados[i-2]=Integer.parseInt(partes[i]);
@@ -35,7 +33,9 @@ public class Principal {
         }
         for (Concurso conc:concursos){
             System.out.println(conc);
+            System.out.printf("Numeros sorteados em ordem crescente: %s\n",conc.SorteadosEmOrdemCrescente());
         }
+
     }
 
 }
