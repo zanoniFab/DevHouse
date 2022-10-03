@@ -8,6 +8,23 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Principal {
+    public static String verificarConcursoPorData(List<Concurso> concursos){
+        System.out.println("Informe uma data para pesquisar se houve sorteio (no formato dd/MM/yyy): ");
+        Scanner scanner = new Scanner(System.in);
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate data = LocalDate.parse(scanner.next(), formatador);
+        String retorno="";
+        for (Concurso concurso:concursos){
+
+            if (concurso.getData().equals(data) ){
+                return Arrays.toString(concurso.getSorteados());
+            } else {
+                retorno = "Não houve sorteio neste dia.";
+            }
+        }
+        return retorno;
+    }
+
     public static void printarConcursos(List<Concurso> lista){
         for (Concurso concurso : lista){
             System.out.println(concurso);
@@ -18,6 +35,7 @@ public class Principal {
     }
 
     public static void main(String[] args) throws IOException {
+
         //recebeo arquivo
         Path arquivo = Paths.get("megasena.txt");
         //le o arquivo
@@ -40,13 +58,14 @@ public class Principal {
             Concurso concurso = new Concurso(nro,data,sorteados);
             concursos.add(concurso);
         }
-        printarConcursos(concursos);
+        //printarConcursos(concursos);
         for (Concurso conc:concursos){
-            System.out.printf("Numeros sorteados em ordem crescente: %s\n",conc.SorteadosEmOrdemCrescente());
+           // System.out.printf("Numeros sorteados em ordem crescente: %s\n",conc.SorteadosEmOrdemCrescente());
         }
         ordenarConcursos(concursos);
-        printarConcursos(concursos);
+        //printarConcursos(concursos);
 
+        System.out.println(verificarConcursoPorData(concursos));
     }
 
 }
