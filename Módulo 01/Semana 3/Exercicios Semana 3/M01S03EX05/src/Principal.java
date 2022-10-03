@@ -8,6 +8,38 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Principal {
+    public static void imprimirNrosFrequentes(List<Concurso> concursos) {
+        // criando e populando Map de nros sorteados e respectivas quantidade em que foram sorteados
+        Map<Integer, Integer> map = new HashMap<>();
+        for (Concurso concurso: concursos) {
+            int[] sorteados = concurso.getSorteados();
+            for (int i = 0; i < sorteados.length; i++) {
+                int nro = sorteados[i];
+                int qtdAtual = map.getOrDefault(nro, 0);
+                map.put(nro, qtdAtual + 1);
+            }
+        }
+        // calculado as maiores e menores quantidades
+        int nroMaisFrequente = 1;
+        int nroMenosFrequente = 1;
+        int qtdMaisFrequente = 0;
+        int qtdMenosFrequente = Integer.MAX_VALUE;
+
+        for(Integer nro: map.keySet()) {
+            Integer qtd = map.get(nro);
+            if (qtd > qtdMaisFrequente) {
+                qtdMaisFrequente = qtd;
+                nroMaisFrequente = nro;
+            }
+            if (qtd < qtdMenosFrequente) {
+                qtdMenosFrequente = qtd;
+                nroMenosFrequente = nro;
+            }
+        }
+
+        System.out.println("Número mais frequente = " + nroMaisFrequente);
+        System.out.println("Número menos frequente = " + nroMenosFrequente);
+    }
     public static String verificarNumerosSorteados(List<Concurso> concursos){
         System.out.println("Informe seis dezenas separadas por virgula: ");
         Scanner scanner = new Scanner(System.in);
@@ -90,7 +122,8 @@ public class Principal {
         //printarConcursos(concursos);
 
         //System.out.println(verificarConcursoPorData(concursos));
-        System.out.println(verificarNumerosSorteados(concursos));
+        //System.out.println(verificarNumerosSorteados(concursos));
+        imprimirNrosFrequentes(concursos);
     }
 
 }
