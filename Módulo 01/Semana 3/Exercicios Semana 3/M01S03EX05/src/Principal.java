@@ -8,6 +8,30 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Principal {
+    public static String verificarNumerosSorteados(List<Concurso> concursos){
+        System.out.println("Informe seis dezenas separadas por virgula: ");
+        Scanner scanner = new Scanner(System.in);
+        String dezenasInformadas = scanner.next();
+        String[] listaDezenas = dezenasInformadas.split(",");
+        int[] dezenasConvertidas = new int[6];
+        for (int i=0; i<6;i++){
+            dezenasConvertidas[i]= Integer.parseInt(listaDezenas[i].trim());
+        }
+        Arrays.sort(dezenasConvertidas);
+
+        int[] dezenasSorteadas;
+        String retorno="";
+        for(Concurso concurso : concursos){
+            dezenasSorteadas = concurso.getSorteados();
+            Arrays.sort(dezenasSorteadas);
+            if(Arrays.toString(dezenasSorteadas).equals(Arrays.toString(dezenasConvertidas))){
+                return Arrays.toString(dezenasSorteadas);
+            } else {
+                retorno = "Numeros nunca sorteados.";
+            }
+        }
+        return retorno;
+    }
     public static String verificarConcursoPorData(List<Concurso> concursos){
         System.out.println("Informe uma data para pesquisar se houve sorteio (no formato dd/MM/yyy): ");
         Scanner scanner = new Scanner(System.in);
@@ -65,7 +89,8 @@ public class Principal {
         ordenarConcursos(concursos);
         //printarConcursos(concursos);
 
-        System.out.println(verificarConcursoPorData(concursos));
+        //System.out.println(verificarConcursoPorData(concursos));
+        System.out.println(verificarNumerosSorteados(concursos));
     }
 
 }
