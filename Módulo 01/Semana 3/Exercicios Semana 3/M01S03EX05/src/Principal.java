@@ -8,6 +8,36 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Principal {
+    public static void imprimirNroMaisAtrasado(List<Concurso> concursos) {
+        // criando e populando map de nros sorteados e respectivas ultima data em que foram sorteados (data mais recente de sorteio)
+        Map<Integer, LocalDate> map = new HashMap<>();
+        for (Concurso concurso: concursos) {
+            int[] sorteados = concurso.getSorteados();
+            for (int i = 0; i < sorteados.length; i++) {
+                int nro = sorteados[i];
+                if (map.containsKey(nro)) {
+                    LocalDate dataUltSorteio = map.get(nro);
+                    if (concurso.getData().isAfter(dataUltSorteio)) {
+                        map.put(nro, concurso.getData());
+                    }
+                } else {
+                    map.put(nro, concurso.getData());
+                }
+            }
+        }
+
+        LocalDate dataMaisAntiga = LocalDate.now();
+        int nroMaisAtrasado = 0;
+        for(Integer nro: map.keySet()) {
+            LocalDate data = map.get(nro);
+            if (data.isBefore(dataMaisAntiga)) {
+                dataMaisAntiga = data;
+                nroMaisAtrasado = nro;
+            }
+        }
+
+        System.out.println("Mais atrasado: " + nroMaisAtrasado);   // 24
+    }
     public static void imprimirNrosFrequentes(List<Concurso> concursos) {
         // criando e populando Map de nros sorteados e respectivas quantidade em que foram sorteados
         Map<Integer, Integer> map = new HashMap<>();
@@ -123,7 +153,8 @@ public class Principal {
 
         //System.out.println(verificarConcursoPorData(concursos));
         //System.out.println(verificarNumerosSorteados(concursos));
-        imprimirNrosFrequentes(concursos);
+        //imprimirNrosFrequentes(concursos);
+        imprimirNroMaisAtrasado(concursos);
     }
 
 }
