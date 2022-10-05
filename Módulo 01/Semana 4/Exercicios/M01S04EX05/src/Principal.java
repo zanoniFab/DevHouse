@@ -12,17 +12,15 @@ public class Principal {
         System.out.print("Informe o superpoder do seu personagem: ");
         String poder = scanner.nextLine();
         System.out.print("Seu personagem é um vilão ou um herói? ");
-        String tipo = scanner.next().toLowerCase();
+        String tipo = scanner.nextLine().toLowerCase();
         if (tipo.equals("vilao")) {
             System.out.print("Informe o tempo aprisionado (em anos): ");
             Integer tempo = scanner.nextInt();
             Vilao vilao = new Vilao(nome, poder, tempo);
             System.out.println(vilao.toString());
         } else if (tipo.equals("heroi")) {
-            System.out.print("Informe o nome na vida real do seu personagem: ");
-            System.out.println("perguntou");
+            System.out.print("Informe o nome na vida real do seu personagem:");
             String nomeVidaReal = scanner.nextLine();
-            System.out.println("o que tá vindo: "+nomeVidaReal+" veio?");
             Heroi heroi = new Heroi(nome, nomeVidaReal, poder);
             System.out.println(heroi.toString());
         } else {
