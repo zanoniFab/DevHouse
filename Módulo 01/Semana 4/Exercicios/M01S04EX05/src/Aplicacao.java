@@ -1,5 +1,3 @@
-package org.devinhouse.superherois;
-
 import org.devinhouse.superherois.cli.Display;
 import org.devinhouse.superherois.exception.OpcaoInvalidaException;
 import org.devinhouse.superherois.model.Operacao;
