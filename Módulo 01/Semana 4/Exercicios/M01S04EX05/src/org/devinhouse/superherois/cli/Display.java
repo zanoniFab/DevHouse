@@ -1,5 +1,6 @@
 package org.devinhouse.superherois.cli;
 
+import org.devinhouse.superherois.exception.OpcaoInvalidaException;
 import org.devinhouse.superherois.model.Heroi;
 import org.devinhouse.superherois.model.Operacao;
 import org.devinhouse.superherois.model.Personagem;
@@ -12,7 +13,7 @@ public class Display {
     public void exibirMenu(){
         System.out.print("Escolha uma opção:\n1- Cadastrar Herói\n2- Cadastrar Vilão\n3- Listar\n4- Sair\nDigite a opção desejada: ");
     }
-    public Operacao obterOperacao() {
+    public Operacao obterOperacao() throws OpcaoInvalidaException {
         System.out.print("Digite a opção desejada: ");
         Scanner scanner = new Scanner(System.in);
         int opcao = scanner.nextInt();
@@ -43,4 +44,7 @@ public class Display {
         }
     }
 
+    public void exibirMensagem(String s) {
+        System.out.println(s);;
+    }
 }
