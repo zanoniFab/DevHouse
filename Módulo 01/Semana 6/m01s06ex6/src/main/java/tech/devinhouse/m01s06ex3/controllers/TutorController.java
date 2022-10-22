@@ -1,7 +1,7 @@
-package tech.devinhouse.m01s06ex6.controllers;
+package tech.devinhouse.m01s06ex3.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import tech.devinhouse.m01s06ex6.models.Tutor;
+import tech.devinhouse.m01s06ex3.models.Tutor;
 
 @RestController
 @RequestMapping(value="tutor")
@@ -12,14 +12,13 @@ public class TutorController {
         return "Get - Tutor";
     }
     @PostMapping
-    public Tutor post(@RequestBody Tutor tutor){
-        return tutor;
+    public String post(){
+        return "Post - Tutor";
 
     }
     @PutMapping
-    public Tutor put(@RequestBody Tutor tutor){
-        Tutor tutorEditado = findById(tutor.getId());
-        return tutorEditado;
+    public String put(  ){
+        return "Put - Tutor";
     }
     @DeleteMapping
     public String delete(){

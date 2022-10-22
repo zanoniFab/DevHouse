@@ -1,4 +1,0 @@
-package tech.devinhouse.m01s06ex6.models;
-
-public class Tutor {
-}

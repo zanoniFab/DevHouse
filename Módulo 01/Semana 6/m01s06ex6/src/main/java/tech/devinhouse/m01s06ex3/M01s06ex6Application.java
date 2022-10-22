@@ -1,4 +1,4 @@
-package tech.devinhouse.m01s06ex6;
+package tech.devinhouse.m01s06ex3;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
