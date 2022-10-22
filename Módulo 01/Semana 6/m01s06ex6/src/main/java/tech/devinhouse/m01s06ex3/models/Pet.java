@@ -1,5 +1,10 @@
 package tech.devinhouse.m01s06ex3.models;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 public class Pet {
     private static int sequencia=0;
     private Integer id;
