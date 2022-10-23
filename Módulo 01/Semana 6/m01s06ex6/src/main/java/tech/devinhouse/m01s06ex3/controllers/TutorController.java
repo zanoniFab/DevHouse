@@ -1,8 +1,9 @@
 package tech.devinhouse.m01s06ex3.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tech.devinhouse.m01s06ex3.models.Pet;
 import tech.devinhouse.m01s06ex3.models.Tutor;
+import tech.devinhouse.m01s06ex3.services.TutorService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,42 +12,25 @@ import java.util.List;
 @RequestMapping(value="tutor")
 
 public class TutorController {
-    private static List<Tutor> tutores = new ArrayList<>();
+    @Autowired
+    private TutorService tutorService;
     @GetMapping
     public List<Tutor> get(){
-        return tutores;
+        return tutorService.findAll();
     }
+
     @PostMapping
     public Tutor post(@RequestBody Tutor tutor){
-        tutores.add(tutor);
-        return tutor;
-
+        return tutorService.save(tutor);
     }
     @PutMapping
     public Tutor put(@RequestBody Tutor tutor){
-        Tutor tutorEdicao = findById(tutor.getId());
-        tutorEdicao.setNome(tutor.getNome());
-        tutorEdicao.setIdade(tutor.getIdade());
-        return tutorEdicao;
+        return tutorService.save(tutor);
+    }
+    @DeleteMapping
+    public boolean delete (Integer id){
+        return tutorService.delete(id);
     }
 
-    @DeleteMapping
-    public boolean delete(Integer id){
-        try{
-            Tutor tutor = findById(id);
-            tutores.remove(tutor);
-        } catch (Exception e){
-            return false;
-        }
-        return true;
-    }
-    private Tutor findById(Integer id){
-        for (Tutor tutor : tutores){
-            if(id == tutor.getId()){
-                return tutor;
-            }
-        }
-        return null;
-    }
 
 }
