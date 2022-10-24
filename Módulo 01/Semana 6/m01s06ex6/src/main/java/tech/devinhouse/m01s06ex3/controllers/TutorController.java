@@ -1,11 +1,8 @@
 package tech.devinhouse.m01s06ex3.controllers;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tech.devinhouse.m01s06ex3.models.Tutor;
 import tech.devinhouse.m01s06ex3.services.TutorService;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -31,6 +28,4 @@ public class TutorController {
     public boolean delete (Integer id){
         return tutorService.delete(id);
     }
-
-
 }

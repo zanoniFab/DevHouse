@@ -1,10 +1,9 @@
 package tech.devinhouse.m01s06ex3.controllers;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tech.devinhouse.m01s06ex3.models.Pet;
 import tech.devinhouse.m01s06ex3.repositories.PetRepository;
+import tech.devinhouse.m01s06ex3.services.PetService;
 
 import java.util.List;
 
@@ -12,23 +11,23 @@ import java.util.List;
 @RequestMapping(value="pet")
 public class PetController {
     @Autowired
-    private PetRepository petRepository;
+    private PetService petService;
     @GetMapping
     public List<Pet> get(){
-        return petRepository.findAll();
+        return petService.findAll();
     }
 
     @PostMapping
     public Pet post(@RequestBody Pet pet){
-        return petRepository.save(pet);
+        return petService.save(pet);
     }
     @PutMapping
     public Pet put(@RequestBody Pet pet){
-        return petRepository.save(pet);
+        return petService.save(pet);
     }
     @DeleteMapping
     public boolean delete(Integer id){
-        return petRepository.delete(id);
+        return petService.delete(id);
     }
 
 

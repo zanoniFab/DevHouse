@@ -12,5 +12,5 @@ public class Pet {
     private String raca;
     private Integer idade;
     private String alimentoPreferido;
-
+    private Tutor tutor;
 }

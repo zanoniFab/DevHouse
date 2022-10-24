@@ -2,7 +2,7 @@ package tech.devinhouse.m01s06ex3.repositories;
 
 import org.springframework.stereotype.Repository;
 import tech.devinhouse.m01s06ex3.models.Pet;
-import tech.devinhouse.m01s06ex3.models.Tutor;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,10 @@ public class PetRepository {
         Pet petEdicao = findById(pet.getId());
         petEdicao.setNome(pet.getNome());
         petEdicao.setIdade(pet.getIdade());
+        petEdicao.setTipo(pet.getTipo());
+        petEdicao.setRaca(pet.getRaca());
+        petEdicao.setAlimentoPreferido(pet.getAlimentoPreferido());
+        petEdicao.setTutor(pet.getTutor());
         return petEdicao;
     }
 
