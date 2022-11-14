@@ -17,11 +17,11 @@ public class ProdutoController {
         return produtoService.buscar();
     }
     @PostMapping
-    public Produto post(@RequestBody Produto produto){
+    public Produto post(@RequestBody Produto produto) throws Exception {
         return produtoService.salvar(produto);
     }
     @PutMapping
-    public Produto put(@RequestBody Produto produto){
+    public Produto put(@RequestBody Produto produto) throws Exception {
         return produtoService.salvar(produto);
     }
     @DeleteMapping
