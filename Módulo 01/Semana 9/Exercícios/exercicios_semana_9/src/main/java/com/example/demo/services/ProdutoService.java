@@ -21,6 +21,18 @@ public class ProdutoService {
         if (produto.getValorUnitario()!=null && produto.getValorUnitario().compareTo(BigDecimal.ZERO)<0){
             throw new Exception("Valor unitario deve ser maior que zero.");
         }
+        if(produto.getId()!=null){
+            if(produtoRepository.existsByIdNotAndSku(produto.getId(),produto.getSku())){
+                throw new Exception("SKU já existente.");
+            }
+        } else{
+            if(produtoRepository.existsBySku(produto.getSku())){
+                throw new Exception("SKU já existente.");
+            }
+        }
+        if(produto.getSku()==null || produto.getSku().isEmpty()){
+            throw new Exception("SKU já existente.");
+        }
         return produtoRepository.save(produto);
     }
     public boolean apagar(Integer id){
