@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -61,4 +63,26 @@ public class VendaService {
         }
     }
 
+    public Venda buscarPorId(Integer id) {
+        return vendaRepository.findById(id).get();
+    }
+
+    public List<Venda> buscarPorDatas(Date dataInicial, Date dataFinal) {
+        if(dataInicial==null){
+            return new ArrayList<>();
+        }
+        if(dataFinal==null){
+            return vendaRepository.findByDataVendaAfter(dataInicial);
+        }
+        return vendaRepository.findByDataVendaBetween(dataInicial,dataFinal);
+    }
+    public List<Venda> buscarPorStatus(String status){
+        return vendaRepository.findByStatusIgnoreCase(status);
+    }
+
+    public Venda cancelar(Integer id) {
+        Venda venda = vendaRepository.findById(id).get();
+        venda.setStatus("C");
+        return vendaRepository.save(venda);
+    }
 }
