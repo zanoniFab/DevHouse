@@ -14,10 +14,11 @@ import javax.persistence.*;
 public class Jogador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-    @Column(nullable = false,length = 100)
-    String nome;
+    private Integer id;
+
+    private String nome;
+
     @Enumerated(value = EnumType.STRING)
-    Posicao posicao;
+    private Posicao posicao;
 
 }

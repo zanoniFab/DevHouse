@@ -15,14 +15,14 @@ import java.util.List;
 @Table(name = "selecoes")
 public class Selecao {
     @Id
-    @Column(length = 3)
-    String sigla;
-    @Column(nullable = false,length = 30)
-    String nome;
-    @Column(nullable = false,length = 1)
-    String grupo;
-    LocalDateTime dataCadastro;
+    private String sigla;
+
+    private String nome;
+
+    private String grupo;
+
+    private LocalDateTime dataCadastro;
 
     @OneToMany
-    List<Jogador> jogadores;
+    private List<Jogador> jogadores;
 }
