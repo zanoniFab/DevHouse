@@ -11,6 +11,7 @@ import tech.devinhouse.ex01s10api_copadomundo.repository.SelecaoRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -49,5 +50,11 @@ public class JogadorService {
             }
         }
         return filtrados;
+    }
+    public void excluir(String sigla, Integer idJogador) {
+        Optional<Jogador> opt = jogadorRepo.findBySelecaoEidJogador(sigla, idJogador);
+        if (opt.isEmpty())
+            throw new RegistroNaoEncontradoException(Jogador.class.getSimpleName(), idJogador);
+        jogadorRepo.deleteById(idJogador);
     }
 }

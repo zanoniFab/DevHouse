@@ -37,4 +37,9 @@ public class JogadorController {
         List<JogadorResponse> resp = jogadores.stream().map(p -> mapper.map(p, JogadorResponse.class)).collect(Collectors.toList());
         return ResponseEntity.ok(resp);
     }
+    @DeleteMapping("{id}")
+    public ResponseEntity<JogadorResponse> excluir(@PathVariable("sigla") String sigla, @PathVariable("id") Integer id) {
+        service.excluir(sigla, id);
+        return ResponseEntity.noContent().build();
+    }
 }
