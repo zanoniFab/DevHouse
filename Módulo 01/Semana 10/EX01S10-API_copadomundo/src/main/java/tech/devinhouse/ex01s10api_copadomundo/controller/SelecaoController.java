@@ -53,5 +53,17 @@ public class SelecaoController {
         SelecaoResponse resp = mapper.map(selecao, SelecaoResponse.class);
         return ResponseEntity.created(URI.create(resp.getNome())).body(resp);
     }
+    @PutMapping("{sigla}")
+    public ResponseEntity<SelecaoResponse> consultar(@PathVariable("sigla") String sigla, @RequestBody @Valid SelecaoRequest request){
+        Selecao selecao = mapper.map(request, Selecao.class);
+        selecao = service.atualizar(selecao);
+        SelecaoResponse resp = mapper.map(selecao, SelecaoResponse.class);
+        return ResponseEntity.ok(resp);
+    }
+    @DeleteMapping("{sigla}")
+    public ResponseEntity<SelecaoResponse> excluir(@PathVariable("sigla") String sigla) {
+        service.excluir(sigla);
+        return ResponseEntity.noContent().build();
+    }
 }
 

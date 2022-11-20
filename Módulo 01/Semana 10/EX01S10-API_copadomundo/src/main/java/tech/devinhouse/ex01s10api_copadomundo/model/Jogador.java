@@ -6,19 +6,23 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "jogadores")
+@Table(name = "JOGADORES")
+@Data
 public class Jogador {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_JOGADOR")
     private Integer id;
 
     private String nome;
 
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Posicao posicao;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "sigla", referencedColumnName = "sigla")
+    private Selecao selecao;
 
 }

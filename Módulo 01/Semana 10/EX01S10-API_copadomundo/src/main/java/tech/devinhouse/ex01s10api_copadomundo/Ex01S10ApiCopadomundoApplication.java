@@ -24,27 +24,13 @@ public class Ex01S10ApiCopadomundoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Ex01S10ApiCopadomundoApplication.class, args);
 	}
-//	@Bean
-//	CommandLineRunner run(SelecaoService selecaoService) {
-//		return args -> {
-//			List<Selecao> lista = selecaoService.consultar("BRA",2,0,"ASC");
-//			if (lista.isEmpty()) {
-//				List<Jogador> jogadorBrasil = new ArrayList<>();
-//				jogadorBrasil.add(new Jogador(1,"Cristiane", Posicao.ATACANTE));
-//				jogadorBrasil.add(new Jogador(2,"Marta", Posicao.ATACANTE));
-//				jogadorBrasil.add(new Jogador(3,"Tamires", Posicao.LATERAL));
-//				selecaoService.inserir(new Selecao("BRA", "Brasil", "G", LocalDateTime.now(),jogadorBrasil));
-//				List<Jogador> jogadorCanada = new ArrayList<>();
-//				jogadorCanada.add(new Jogador(1,"Indio Cuiudo", Posicao.ATACANTE));
-//				jogadorCanada.add(new Jogador(2,"Girafon", Posicao.ZAGUEIRO));
-//				jogadorCanada.add(new Jogador(3,"Guri Pradie", Posicao.LATERAL));
-//				selecaoService.inserir(new Selecao("ENG", "Canada", "H", LocalDateTime.now(),jogadorCanada));
-//			}
-//		};
-//	}
+
 	@Bean
-	public ModelMapper getModelMapper() {
-		return new ModelMapper();
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasename("classpath:messages");
+		messageSource.setDefaultEncoding("UTF-8");
+		return messageSource;
 	}
 
 	@Bean
@@ -55,10 +41,9 @@ public class Ex01S10ApiCopadomundoApplication {
 	}
 
 	@Bean
-	public MessageSource messageSource() {
-		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasename("classpath:messages");
-		messageSource.setDefaultEncoding("UTF-8");
-		return messageSource;
+	public ModelMapper modelMapper() {
+		ModelMapper modelMapper = new ModelMapper();
+		return modelMapper;
 	}
+
 }
