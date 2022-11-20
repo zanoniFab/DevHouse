@@ -41,5 +41,14 @@ public class SelecaoService {
         throw new RegistroNaoEncontradoException("Selecao", sigla);
     }
 
+    public Selecao atualizar(Selecao selecao) {
+            final String sigla = selecao.getSigla();
+            Selecao selecaoBD = repo.findById(sigla)
+                    .orElseThrow(() -> new RegistroNaoEncontradoException(Selecao.class.getSimpleName(), sigla));
+            selecaoBD.setGrupo(selecao.getGrupo());
+            selecaoBD.setNome(selecao.getNome());
+            selecao = repo.save(selecaoBD);
+            return selecao;
+    }
 }
 
