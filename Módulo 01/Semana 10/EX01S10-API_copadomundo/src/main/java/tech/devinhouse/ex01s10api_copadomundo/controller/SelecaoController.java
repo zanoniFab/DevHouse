@@ -40,6 +40,12 @@ public class SelecaoController {
             }
         return ResponseEntity.ok(resp);
     }
+    @GetMapping("{sigla}")
+    public ResponseEntity<SelecaoResponse> listar(@PathVariable("sigla") String sigla) {
+        Selecao selecao = service.consultar(sigla);
+        SelecaoResponse resp = mapper.map(selecao, SelecaoResponse.class);
+        return ResponseEntity.ok(resp);
+    }
     @PostMapping
     public ResponseEntity<SelecaoResponse> inserir(@RequestBody @Valid SelecaoRequest request) {
         Selecao selecao = mapper.map(request, Selecao.class);

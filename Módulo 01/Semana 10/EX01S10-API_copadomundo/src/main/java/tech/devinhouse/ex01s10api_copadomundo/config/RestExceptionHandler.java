@@ -11,6 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import tech.devinhouse.ex01s10api_copadomundo.dto.ErroResponse;
 import tech.devinhouse.ex01s10api_copadomundo.exception.RegistroExistenteException;
+import tech.devinhouse.ex01s10api_copadomundo.exception.RegistroNaoEncontradoException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,5 +33,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         });
         ErroResponse erro = new ErroResponse("Erro de validação", camposComErros);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
+    }
+    @ExceptionHandler(RegistroNaoEncontradoException.class)
+    public ResponseEntity<Object> handleRegistroNaoEncontradoException(RegistroNaoEncontradoException e) {
+        ErroResponse erro = new ErroResponse(e.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);
     }
 }
