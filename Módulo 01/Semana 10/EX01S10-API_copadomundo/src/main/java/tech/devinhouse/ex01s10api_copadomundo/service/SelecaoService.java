@@ -6,11 +6,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import tech.devinhouse.ex01s10api_copadomundo.exception.RegistroExistenteException;
+import tech.devinhouse.ex01s10api_copadomundo.exception.RegistroNaoEncontradoException;
 import tech.devinhouse.ex01s10api_copadomundo.model.Selecao;
 import tech.devinhouse.ex01s10api_copadomundo.repository.SelecaoRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -32,5 +34,12 @@ public class SelecaoService {
         Page<Selecao> page = repo.findAll(pageable);
         return page.toList();
     }
+    public Selecao consultar(String sigla) {
+        Optional<Selecao> perfilOpt = repo.findById(sigla);
+        if (perfilOpt.isPresent())
+            return perfilOpt.get();
+        throw new RegistroNaoEncontradoException("Selecao", sigla);
+    }
+
 }
 

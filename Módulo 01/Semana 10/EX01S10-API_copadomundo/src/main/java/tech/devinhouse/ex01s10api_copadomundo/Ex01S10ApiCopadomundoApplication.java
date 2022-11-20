@@ -9,10 +9,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import tech.devinhouse.ex01s10api_copadomundo.model.Jogador;
+import tech.devinhouse.ex01s10api_copadomundo.model.Posicao;
 import tech.devinhouse.ex01s10api_copadomundo.model.Selecao;
 import tech.devinhouse.ex01s10api_copadomundo.service.SelecaoService;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -24,10 +27,18 @@ public class Ex01S10ApiCopadomundoApplication {
 //	@Bean
 //	CommandLineRunner run(SelecaoService selecaoService) {
 //		return args -> {
-//			List<Selecao> lista = selecaoService.consultar("BRA", "BRASIL", "H", "ASC",3,0,"nome");
+//			List<Selecao> lista = selecaoService.consultar("BRA",2,0,"ASC");
 //			if (lista.isEmpty()) {
-//				selecaoService.inserir(new Selecao("CAM", "Camaroes", LocalDate.now().minusYears(20),(new Jogador());
-//
+//				List<Jogador> jogadorBrasil = new ArrayList<>();
+//				jogadorBrasil.add(new Jogador(1,"Cristiane", Posicao.ATACANTE));
+//				jogadorBrasil.add(new Jogador(2,"Marta", Posicao.ATACANTE));
+//				jogadorBrasil.add(new Jogador(3,"Tamires", Posicao.LATERAL));
+//				selecaoService.inserir(new Selecao("BRA", "Brasil", "G", LocalDateTime.now(),jogadorBrasil));
+//				List<Jogador> jogadorCanada = new ArrayList<>();
+//				jogadorCanada.add(new Jogador(1,"Indio Cuiudo", Posicao.ATACANTE));
+//				jogadorCanada.add(new Jogador(2,"Girafon", Posicao.ZAGUEIRO));
+//				jogadorCanada.add(new Jogador(3,"Guri Pradie", Posicao.LATERAL));
+//				selecaoService.inserir(new Selecao("ENG", "Canada", "H", LocalDateTime.now(),jogadorCanada));
 //			}
 //		};
 //	}
