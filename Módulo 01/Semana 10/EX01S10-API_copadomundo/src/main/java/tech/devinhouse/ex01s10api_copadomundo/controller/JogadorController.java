@@ -30,6 +30,7 @@ public class JogadorController {
         JogadorResponse resp = mapper.map(jogador, JogadorResponse.class);
         return ResponseEntity.created(URI.create(resp.getId().toString())).body(resp);
     }
+
     @GetMapping
     public ResponseEntity<List<JogadorResponse>> listar(@PathVariable("sigla") String sigla,
                                                         @RequestParam(value = "nome", required = false) String nomePesquisa) {
@@ -37,9 +38,11 @@ public class JogadorController {
         List<JogadorResponse> resp = jogadores.stream().map(p -> mapper.map(p, JogadorResponse.class)).collect(Collectors.toList());
         return ResponseEntity.ok(resp);
     }
+
     @DeleteMapping("{id}")
     public ResponseEntity<JogadorResponse> excluir(@PathVariable("sigla") String sigla, @PathVariable("id") Integer id) {
         service.excluir(sigla, id);
         return ResponseEntity.noContent().build();
     }
+
 }

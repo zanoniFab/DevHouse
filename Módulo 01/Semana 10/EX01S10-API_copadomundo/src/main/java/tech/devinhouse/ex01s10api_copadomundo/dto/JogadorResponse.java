@@ -1,7 +1,6 @@
 package tech.devinhouse.ex01s10api_copadomundo.dto;
 
 import lombok.Data;
-
 @Data
 public class JogadorResponse {
 

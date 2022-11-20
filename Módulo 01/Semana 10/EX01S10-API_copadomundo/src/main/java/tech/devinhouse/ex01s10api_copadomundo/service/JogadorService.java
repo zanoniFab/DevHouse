@@ -33,7 +33,7 @@ public class JogadorService {
         return jogador;
     }
 
-    public List<Jogador> consultar(String sigla, String nomePesquisa) {
+    public List<Jogador> consultar(String sigla, String pesquisa) {
         Selecao selecao = selecaoRepo.findById(sigla)
                 .orElseThrow(() -> new RegistroNaoEncontradoException(Selecao.class.getSimpleName(), sigla));
 //        return selecao.getJogadores();
@@ -41,16 +41,17 @@ public class JogadorService {
 //        if (pesquisa != null) {
 //            jogadores = jogadores.stream().filter(j -> j.getNome().contains(pesquisa)).collect(Collectors.toList());
 //        }
-        if (nomePesquisa == null)
+        if (pesquisa == null)
             return jogadores;
         List<Jogador> filtrados = new ArrayList<>();
-        for (Jogador jogador : jogadores) {
-            if (jogador.getNome().contains(nomePesquisa)) {
+        for(Jogador jogador : jogadores) {
+            if (jogador.getNome().contains(pesquisa)) {
                 filtrados.add(jogador);
             }
         }
         return filtrados;
     }
+
     public void excluir(String sigla, Integer idJogador) {
         Optional<Jogador> opt = jogadorRepo.findBySelecaoEidJogador(sigla, idJogador);
         if (opt.isEmpty())
