@@ -60,5 +60,10 @@ public class SelecaoController {
         SelecaoResponse resp = mapper.map(selecao, SelecaoResponse.class);
         return ResponseEntity.ok(resp);
     }
+    @DeleteMapping("{sigla}")
+    public ResponseEntity<SelecaoResponse> excluir(@PathVariable("sigla") String sigla) {
+        service.excluir(sigla);
+        return ResponseEntity.noContent().build();
+    }
 }
 

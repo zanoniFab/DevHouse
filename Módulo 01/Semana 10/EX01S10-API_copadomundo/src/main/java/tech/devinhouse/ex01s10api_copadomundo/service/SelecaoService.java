@@ -50,5 +50,10 @@ public class SelecaoService {
             selecao = repo.save(selecaoBD);
             return selecao;
     }
+    public void excluir(String sigla) {
+        if (!repo.existsById(sigla))
+            throw new RegistroNaoEncontradoException(Selecao.class.getSimpleName(), sigla);
+        repo.deleteById(sigla);
+    }
 }
 
