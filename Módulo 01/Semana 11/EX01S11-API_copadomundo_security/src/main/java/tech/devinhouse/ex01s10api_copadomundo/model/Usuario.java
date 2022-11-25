@@ -21,7 +21,10 @@ public class Usuario {
     private String email;
     private String senha;
     private LocalDate dataNascimento;
-
+    @ElementCollection(targetClass = Papel.class)
+    @JoinTable(name = "USUARIOSCOPA_ROLES", joinColumns = @JoinColumn(name = "ID_USUARIO"))
+    @Column(name = "ROLE", nullable = false)
+    @Enumerated(EnumType.STRING)
     private List<Papel> papeis;
 
 }
