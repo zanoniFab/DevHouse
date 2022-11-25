@@ -39,4 +39,5 @@ public class UsuarioController {
             resp.add(mapper.map(usuario,UsuarioResponse.class));
         return ResponseEntity.ok(resp);
     }
+
 }

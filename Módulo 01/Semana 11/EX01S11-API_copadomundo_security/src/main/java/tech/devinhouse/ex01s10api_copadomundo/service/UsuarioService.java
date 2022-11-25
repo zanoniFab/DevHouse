@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import tech.devinhouse.ex01s10api_copadomundo.exception.RegistroExistenteException;
 import tech.devinhouse.ex01s10api_copadomundo.model.Usuario;
 import tech.devinhouse.ex01s10api_copadomundo.repository.UsuarioRepository;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -35,8 +34,6 @@ public class UsuarioService implements UserDetailsService {
         usuario.setSenha(senhaCodificada);
         return repo.save(usuario);
     }
-
-
     public List<Usuario> consultar() {
         return repo.findAll();
     }
@@ -44,28 +41,15 @@ public class UsuarioService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Usuario> usuarioOptional = repo.findByEmail(email);
-        if (usuarioOptional.isEmpty()){
-            throw new UsernameNotFoundException("Usuário inexistente!");
-        }
-        return (UserDetails) usuarioOptional.get();
+        if (usuarioOptional.isEmpty())
+            throw new UsernameNotFoundException("Usuário não encontrado!");
+        return usuarioOptional.get();
     }
 
     public String getTokenFrom(String authorizationHeader) {
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer "))
             throw new IllegalArgumentException("Invalid Headers");
-        String token = authorizationHeader.substring("Bearer ".length());
-        return token;
-    }
-
-    public String generateToken(Usuario usuario) {
-        Algorithm algorithm = Algorithm.HMAC256(segredo.getBytes());
-        String accessToken = JWT.create()
-                .withSubject(usuario.getEmail())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 6000))  // expires in 10 min
-                .withIssuer("Copa Do Mundo-API")
-                .withClaim("roles", usuario.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
-                .sign(algorithm);
-        return accessToken;
+        return authorizationHeader.substring("Bearer ".length());
     }
 
     public DecodedJWT getDecodedTokenFrom(String token) {

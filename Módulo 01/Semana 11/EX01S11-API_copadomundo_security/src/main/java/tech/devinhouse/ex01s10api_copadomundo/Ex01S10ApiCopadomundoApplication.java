@@ -26,39 +26,28 @@ public class Ex01S10ApiCopadomundoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Ex01S10ApiCopadomundoApplication.class, args);
 	}
-	@Bean
-	public PasswordEncoder obterPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-//	@Bean
-//	CommandLineRunner run(UsuarioService usuarioService) {
-//		return args -> {  // inserting data after application is up
-//			if (usuarioService.consultar().isEmpty()) {
-//				usuarioService.criar(new Usuario(null, "zanonao@bol.com", "girafiane", LocalDate.now().minusYears(20), Arrays.asList(Papel.ADMINISTRADOR)));
-//			}
-//		};
-//
-//	}
+		@Bean
+		public MessageSource messageSource() {
+			ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+			messageSource.setBasename("classpath:messages");
+			messageSource.setDefaultEncoding("UTF-8");
+			return messageSource;
+		}
+		@Bean
+		public LocalValidatorFactoryBean validator() {
+			LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+			bean.setValidationMessageSource(messageSource());
+			return bean;
+		}
+		@Bean
+		public ModelMapper modelMapper() {
+			ModelMapper modelMapper = new ModelMapper();
+			return modelMapper;
+		}
 
-	@Bean
-	public MessageSource messageSource() {
-		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasename("classpath:messages");
-		messageSource.setDefaultEncoding("UTF-8");
-		return messageSource;
-	}
-
-	@Bean
-	public LocalValidatorFactoryBean validator() {
-		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-		bean.setValidationMessageSource(messageSource());
-		return bean;
-	}
-
-	@Bean
-	public ModelMapper modelMapper() {
-		ModelMapper modelMapper = new ModelMapper();
-		return modelMapper;
-	}
+		@Bean
+		public PasswordEncoder obterPasswordEncoder() {
+			return new BCryptPasswordEncoder();
+		}
 
 }
