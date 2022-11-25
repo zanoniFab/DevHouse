@@ -1,0 +1,27 @@
+package tech.devinhouse.ex01s10api_copadomundo.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
+
+@Entity
+@Table(name="USUARIOSCOPA")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ID_USUARIO")
+    private Integer id;
+    private String email;
+    private String senha;
+    private LocalDate dataNascimento;
+
+    private List<Papel> papeis;
+
+}
