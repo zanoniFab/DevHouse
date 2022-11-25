@@ -7,15 +7,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import tech.devinhouse.ex01s10api_copadomundo.model.Jogador;
-import tech.devinhouse.ex01s10api_copadomundo.model.Posicao;
-import tech.devinhouse.ex01s10api_copadomundo.model.Selecao;
+import tech.devinhouse.ex01s10api_copadomundo.model.*;
 import tech.devinhouse.ex01s10api_copadomundo.service.SelecaoService;
+import tech.devinhouse.ex01s10api_copadomundo.service.UsuarioService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -24,6 +26,19 @@ public class Ex01S10ApiCopadomundoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Ex01S10ApiCopadomundoApplication.class, args);
 	}
+	@Bean
+	public PasswordEncoder obterPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+//	@Bean
+//	CommandLineRunner run(UsuarioService usuarioService) {
+//		return args -> {  // inserting data after application is up
+//			if (usuarioService.consultar().isEmpty()) {
+//				usuarioService.criar(new Usuario(null, "zanonao@bol.com", "girafiane", LocalDate.now().minusYears(20), Arrays.asList(Papel.ADMINISTRADOR)));
+//			}
+//		};
+//
+//	}
 
 	@Bean
 	public MessageSource messageSource() {
