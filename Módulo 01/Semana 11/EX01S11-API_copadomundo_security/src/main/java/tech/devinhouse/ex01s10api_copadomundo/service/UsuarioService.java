@@ -58,4 +58,15 @@ public class UsuarioService implements UserDetailsService {
         DecodedJWT decodedJWT = verifier.verify(token);
         return decodedJWT;
     }
+
+    public String generateToken(Usuario usuario) {
+        Algorithm algorithm = Algorithm.HMAC256(segredo.getBytes());
+        String accessToken = JWT.create()
+                .withSubject(usuario.getEmail())
+                .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 6000))  // expires in 10 min
+                .withIssuer("Copa Do Mundo-API")
+                .withClaim("roles", usuario.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
+                .sign(algorithm);
+        return accessToken;
+    }
 }
